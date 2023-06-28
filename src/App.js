@@ -4,12 +4,13 @@ import {
   Card,
   CardContent,
   Container,
+  CssBaseline,
   Input,
   TextField,
   Typography,
 } from "@mui/material";
 import * as React from "react";
-import landing_video from "./assets/landing_video.mp4";
+import landing_video from "./assets/landing_video.gif";
 import { UserContext } from "./context/ContextProvider";
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
@@ -30,77 +31,43 @@ function App() {
   };
   return (
     <React.Fragment>
+      <CssBaseline/>
       <Box
         sx={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
+          padding: "0",
+          margin: "0",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+          backgroundImage: `url(${landing_video})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       >
-        <video
-          autoPlay
-          loop
-          muted
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            minWidth: "100%",
-            minHeight: "100%",
-            width: "auto",
-            height: "auto",
-            zIndex: "-100",
-            transform: "translate(-50%, -50%)",
-            background: "transparent no-repeat center",
-            backgroundSize: "cover",
-          }}
-        >
-          <source src={landing_video} type="video/mp4" />
-          Your browser does not support HTML5 video.
-        </video>
-        <Box
-          sx={{
-            position: "relative",
-            zIndex: "10",
-            color: "black",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "100vh",
-          }}
-        >
-          <Card sx={{ width: "15vw" }}>
-            {/* <Box
-              sx={{
-                // display: "flex",
-                // justifyContent: "center",
-                // alignItems: "center",
-              }}
-            > */}
-            <CardContent>
-              <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-                Hey Chef!
-              </Typography>
-              <Box mt={4} mb={4}>
-                <TextField
-                  value={user}
-                  error={error}
-                  onChange={(e) => setUser(e.target.value)}
-                  fullWidth
-                  variant="outlined"
-                  label="What's your name?"
-                />
-              </Box>
-              <Button variant="outlined" onClick={GoToHome}>
-                Let's Cook!
-              </Button>
-            </CardContent>
-            {/* </Box> */}
-          </Card>
-        </Box>
+        <Card sx={{ width: "15vw" }}>
+          <CardContent>
+            <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+              Hey Chef!
+            </Typography>
+            <Box mt={4} mb={4}>
+              <TextField
+                value={user}
+                error={error}
+                onChange={(e) => setUser(e.target.value)}
+                fullWidth
+                variant="outlined"
+                label="What's your name?"
+              />
+            </Box>
+            <Button variant="outlined" onClick={GoToHome}>
+              Let's Cook!
+            </Button>
+          </CardContent>
+          {/* </Box> */}
+        </Card>
       </Box>
+      {/* </Box> */}
     </React.Fragment>
   );
 }
