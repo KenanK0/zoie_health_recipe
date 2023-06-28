@@ -45,7 +45,29 @@ function App() {
           backgroundPosition: "center",
         }}
       >
-        <Card
+        <video
+          autoPlay
+          playsInline
+          loop
+          muted
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            minWidth: "100%",
+            minHeight: "100%",
+            width: "auto",
+            height: "auto",
+            zIndex: "-100",
+            transform: "translate(-50%, -50%)",
+            background: "transparent no-repeat center",
+            backgroundSize: "cover",
+          }}
+        >
+          <source src={landing_video} type="video/mp4" />
+          Your browser does not support HTML5 video.
+        </video>
+        <Box
           sx={{
             width: {
               xs: "90vw", // For extra small devices (mobile phones)
@@ -56,26 +78,44 @@ function App() {
             },
           }}
         >
-          <CardContent>
-            <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-              Hey Chef!
-            </Typography>
-            <Box mt={4} mb={4}>
-              <TextField
-                value={user}
-                error={error}
-                onChange={(e) => setUser(e.target.value)}
-                fullWidth
-                variant="outlined"
-                label="What's your name?"
-              />
-            </Box>
-            <Button variant="outlined" onClick={GoToHome}>
-              Let's Cook!
-            </Button>
-          </CardContent>
-          {/* </Box> */}
-        </Card>
+          <Card
+            sx={{
+              width: {
+                xs: "90vw", // Smaller width for small (xs) screens
+                sm: "60vw", // Larger width for larger (sm and above) screens
+                md: "40vw", // Even larger width for md and above screens
+                lg: "30vw", // Even larger width for lg and above screens
+              },
+            }}
+          >
+            {/* <Box
+              sx={{
+                // display: "flex",
+                // justifyContent: "center",
+                // alignItems: "center",
+              }}
+            > */}
+            <CardContent>
+              <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+                Hey Chef!
+              </Typography>
+              <Box mt={4} mb={4}>
+                <TextField
+                  value={user}
+                  error={error}
+                  onChange={(e) => setUser(e.target.value)}
+                  fullWidth
+                  variant="outlined"
+                  label="What's your name?"
+                />
+              </Box>
+              <Button variant="outlined" onClick={GoToHome}>
+                Let's Cook!
+              </Button>
+            </CardContent>
+            {/* </Box> */}
+          </Card>
+        </Box>
       </Box>
       {/* </Box> */}
     </React.Fragment>
