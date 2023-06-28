@@ -41,6 +41,7 @@ function App() {
       >
         <video
           autoPlay
+          playsInline
           loop
           muted
           style={{
@@ -71,7 +72,16 @@ function App() {
             height: "100vh",
           }}
         >
-          <Card sx={{ width: "15vw" }}>
+          <Card
+            sx={{
+              width: {
+                xs: "90vw", // Smaller width for small (xs) screens
+                sm: "60vw", // Larger width for larger (sm and above) screens
+                md: "40vw", // Even larger width for md and above screens
+                lg: "30vw", // Even larger width for lg and above screens
+              },
+            }}
+          >
             {/* <Box
               sx={{
                 // display: "flex",
