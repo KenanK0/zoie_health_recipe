@@ -31,7 +31,7 @@ function App() {
   };
   return (
     <React.Fragment>
-      <CssBaseline/>
+      <CssBaseline />
       <Box
         sx={{
           padding: "0",
@@ -45,7 +45,17 @@ function App() {
           backgroundPosition: "center",
         }}
       >
-        <Card sx={{ width: "15vw" }}>
+        <Card
+          sx={{
+            width: {
+              xs: "90vw", // For extra small devices (mobile phones)
+              sm: "60vw", // For small devices (tablets)
+              md: "40vw", // For medium devices (laptops)
+              lg: "30vw", // For large devices (desktops)
+              xl: "20vw", // For extra large devices (large desktops)
+            },
+          }}
+        >
           <CardContent>
             <Typography variant="h5" sx={{ fontWeight: "bold" }}>
               Hey Chef!
