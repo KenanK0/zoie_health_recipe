@@ -10,11 +10,49 @@ import {
   Typography,
 } from "@mui/material";
 import * as React from "react";
-import landing_video from "./assets/landing_video.gif";
+import landing_video from "./assets/landing_video.mp4";
 import { UserContext } from "./context/ContextProvider";
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { styled } from "@mui/system";
 
+const StyledBox = styled(Box)({
+  padding: "0",
+  margin: "0",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  backgroundImage: `url(${landing_video})`,
+  position: "fixed",
+  top: 0,
+  left: 0,
+  width: "100%",
+  height: "100%",
+});
+
+const MyCard = styled(Card)({
+  backgroundColor: "#ffffff",
+  borderRadius: "15px",
+  boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
+  transition: "0.3s ease-in-out",
+  ":hover": {
+    boxShadow: "0 8px 20px rgba(0, 0, 0, 0.2)",
+    transform: "translateY(-3px)",
+    backgroundColor: "#FFC0CB",
+    color: "#ffffff",
+    border: "0.5px solid white",
+  },
+  marginBottom: "1em",
+});
+
+const MyButton = styled(Button)({
+  color: "#ffffff",
+  backgroundColor: "#FF6B6B",
+  ":hover": {
+    backgroundColor: "#ffffff",
+    color: "#FF6B6B",
+  },
+});
 function App() {
   const navigate = useNavigate();
   const [error, setError] = useState(false);
@@ -25,26 +63,13 @@ function App() {
       return;
     }
     navigate("/home");
-
     setError(false);
     console.log(user);
   };
   return (
     <React.Fragment>
       <CssBaseline />
-      <Box
-        sx={{
-          padding: "0",
-          margin: "0",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100vh",
-          backgroundImage: `url(${landing_video})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
+      <StyledBox>
         <video
           autoPlay
           playsInline
@@ -67,34 +92,17 @@ function App() {
           <source src={landing_video} type="video/mp4" />
           Your browser does not support HTML5 video.
         </video>
-        <Box
-          sx={{
-            width: {
-              xs: "90vw", // For extra small devices (mobile phones)
-              sm: "60vw", // For small devices (tablets)
-              md: "40vw", // For medium devices (laptops)
-              lg: "30vw", // For large devices (desktops)
-              xl: "20vw", // For extra large devices (large desktops)
-            },
-          }}
-        >
-          <Card
+        <Box>
+          <MyCard
             sx={{
               width: {
-                xs: "90vw", // Smaller width for small (xs) screens
+                xs: "75vw", // Smaller width for small (xs) screens
                 sm: "60vw", // Larger width for larger (sm and above) screens
                 md: "40vw", // Even larger width for md and above screens
                 lg: "30vw", // Even larger width for lg and above screens
               },
             }}
           >
-            {/* <Box
-              sx={{
-                // display: "flex",
-                // justifyContent: "center",
-                // alignItems: "center",
-              }}
-            > */}
             <CardContent>
               <Typography variant="h5" sx={{ fontWeight: "bold" }}>
                 Hey Chef!
@@ -109,14 +117,14 @@ function App() {
                   label="What's your name?"
                 />
               </Box>
-              <Button variant="outlined" onClick={GoToHome}>
+              <MyButton variant="outlined" onClick={GoToHome}>
                 Let's Cook!
-              </Button>
+              </MyButton>
             </CardContent>
             {/* </Box> */}
-          </Card>
+          </MyCard>
         </Box>
-      </Box>
+      </StyledBox>
       {/* </Box> */}
     </React.Fragment>
   );
