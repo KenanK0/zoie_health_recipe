@@ -36,7 +36,7 @@ root.render(
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/recipe/:recipeId" element={<RecipeDetails />} />
+          <Route path="/recipe/:recipe_details" element={<RecipeDetails />} />
           <Route path="/FeelingLucky" element={<Lucky />} />
           <Route path="/Fridge" element={<Fridge />} />
         </Routes>
