@@ -1,24 +1,30 @@
 import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
-import Divider from "@mui/material/Divider";
-import Drawer from "@mui/material/Drawer";
-import IconButton from "@mui/material/IconButton";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import MailIcon from "@mui/icons-material/Mail";
-import MenuIcon from "@mui/icons-material/Menu";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-
+import {
+  AppBar,
+  Box,
+  CssBaseline,
+  Divider,
+  Drawer,
+  IconButton,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Toolbar,
+  Typography,
+} from "@mui/material";
+import {
+  Menu,
+  KitchenOutlined,
+  CasinoOutlined,
+  HomeOutlined,
+} from "@mui/icons-material";
+import { Link, useNavigate } from "react-router-dom";
 const drawerWidth = 240;
 
 export default function MyDrawer(props) {
+  const navigate = useNavigate();
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -28,19 +34,51 @@ export default function MyDrawer(props) {
 
   const drawer = (
     <div>
+      <Toolbar sx={{ bgcolor: "#FF6B6B" }} />
+
       <List>
-        {["Home", "Feeling Lucky", "What's in your fridge", "..."].map(
-          (text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          )
-        )}
+        <ListItem
+          disablePadding
+          onClick={() => {
+            navigate("/home");
+          }}
+        >
+          <ListItemButton>
+            <ListItemIcon>
+              <HomeOutlined color="primary" />
+            </ListItemIcon>
+            <ListItemText primary="Home" />
+          </ListItemButton>
+        </ListItem>
+        <Divider />
+        <ListItem
+          disablePadding
+          onClick={() => {
+            navigate("/FeelingLucky");
+          }}
+        >
+          <ListItemButton>
+            <ListItemIcon>
+              <CasinoOutlined color="primary" />
+            </ListItemIcon>
+            <ListItemText primary="Feeling Lucky?" />
+          </ListItemButton>
+        </ListItem>
+        <Divider />
+        <ListItem
+          disablePadding
+          onClick={() => {
+            navigate("/Fridge");
+          }}
+        >
+          <ListItemButton>
+            <ListItemIcon>
+              <KitchenOutlined color="primary" />
+            </ListItemIcon>
+            <ListItemText primary="What's in your fridge?" />
+          </ListItemButton>
+        </ListItem>
+        <Divider />
       </List>
     </div>
   );
@@ -67,7 +105,7 @@ export default function MyDrawer(props) {
             onClick={handleDrawerToggle}
             sx={{ mr: 2, display: { sm: "none" } }}
           >
-            <MenuIcon />
+            <Menu />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
             Zoie Health Recipe Challenge

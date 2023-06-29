@@ -15,7 +15,7 @@ import { UserContext } from "./context/ContextProvider";
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from "@mui/system";
-
+import MyButton from "./components/MyButton";
 const StyledBox = styled(Box)({
   padding: "0",
   margin: "0",
@@ -45,14 +45,6 @@ const MyCard = styled(Card)({
   marginBottom: "1em",
 });
 
-const MyButton = styled(Button)({
-  color: "#ffffff",
-  backgroundColor: "#FF6B6B",
-  ":hover": {
-    backgroundColor: "#ffffff",
-    color: "#FF6B6B",
-  },
-});
 function App() {
   const navigate = useNavigate();
   const [error, setError] = useState(false);

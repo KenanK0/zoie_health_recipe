@@ -1,10 +1,7 @@
 import {
-  Box,
   Container,
   IconButton,
-  Input,
   InputAdornment,
-  InputLabel,
   TextField,
   Typography,
   Card,
@@ -13,32 +10,17 @@ import {
 } from "@mui/material";
 import React, { useContext, useState } from "react";
 
-import { UserContext } from "../context/ContextProvider";
+import { UserContext, apiKey } from "../context/ContextProvider";
 import MyDrawer from "../components/Drawer";
-import { styled } from "@mui/system";
 import { AccountCircle, ArrowBack, ArrowForward } from "@mui/icons-material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
+import { useNavigate } from "react-router-dom";
+import MyHeading from "../components/MyHeading";
+import MyCard from "../components/MyCard";
 
-const MyHeading = styled("h1")({
-  padding: "0",
-  margin: "0",
-  marginBottom: "15px",
-  fontSize: "2.5rem",
-  textAlign: "center",
-  background: "linear-gradient(to right, #FF6B6B 0%, purple 100%)",
-  WebkitBackgroundClip: "text",
-  WebkitTextFillColor: "transparent",
-  fontFamily: "Gloria Hallelujah",
-});
-const StyledCard = styled(Card)({
-  marginBottom: "1em",
-  transition: "0.3s",
-  "&:hover": {
-    transform: "scale(1.03)",
-    boxShadow: "0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)",
-  },
-});
+
 function Home() {
+  const navigate = useNavigate();
   const [query, setQuery] = useState("");
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -58,7 +40,7 @@ function Home() {
     };
 
     let response = await fetch(
-      `https://api.spoonacular.com/recipes/complexSearch?query=${query}&apiKey=343179a1455a44d5ac94af2e345fe8bd`,
+      `https://api.spoonacular.com/recipes/complexSearch?query=${query}&apiKey=${apiKey}`,
       {
         method: "GET",
         headers: headersList,
@@ -69,6 +51,10 @@ function Home() {
     setRecipes(data.results);
     console.log(recipes);
     // console.log(data.results);
+  };
+
+  const navigateToRecipe = (recipeId) => {
+    navigate(`/recipe/${recipeId}`);
   };
   return (
     <MyDrawer>
@@ -82,8 +68,7 @@ function Home() {
           error={error}
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          id="input-with-icon-textfield"
-          label="What's on your mind?"
+          label="Search.."
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
@@ -100,7 +85,7 @@ function Home() {
             <Grid container spacing={3}>
               {recipes.map((recipe) => (
                 <Grid item xs={12} sm={6} md={4} lg={3} key={recipe.id}>
-                  <StyledCard>
+                  <MyCard onClick={() => navigateToRecipe(recipe.id)}>
                     <CardMedia
                       component="img"
                       height="140"
@@ -112,7 +97,7 @@ function Home() {
                         {recipe.title}
                       </Typography>
                     </CardContent>
-                  </StyledCard>
+                  </MyCard>
                 </Grid>
               ))}
             </Grid>
