@@ -1,6 +1,6 @@
 # Zoie Health Recipe Challenge
 
-Zoie Health Recipe Challenge is a dynamic and responsive web application built with React. It's designed to assist users in exploring various culinary delights. The application fetches its rich database of recipes from the Spoonacular API, which provides a free tier with a limited number of requests per day. users can search for recipes using particular ingredients, and view detailed instructions and ingredient lists for any chosen recipe.
+Zoie Health Recipe Challenge is a dynamic and responsive web application built with React. It's designed to assist users in exploring various culinary delights. The application fetches its rich database of recipes from the Spoonacular API, which provides a free tier with a limited number of requests per day. users can search for recipes using particular ingredient or any other information about the food and view detailed instructions and ingredient lists for any chosen recipe.
 
 ## Live Demo
 
