@@ -10,14 +10,21 @@ import {
   Divider,
   Chip,
   Checkbox,
+  Box,
 } from "@mui/material";
 
+import useMediaQuery from "@mui/material/useMediaQuery";
 import { useParams } from "react-router-dom";
 import MyDrawer from "../components/Drawer";
 import MyHeading from "../components/MyHeading";
 import { apiKey } from "../context/ContextProvider";
 import MyCard from "../components/MyCard";
+import Grid from "@mui/material/Unstable_Grid2/Grid2";
+import LinearProgress from "@mui/material/LinearProgress";
+
 function RecipeDetails() {
+  const [currentStep, setCurrentStep] = useState(0);
+  const [totalSteps, setTotalSteps] = useState(0);
   const [recipeDetails, setRecipeDetails] = useState([]);
   let { recipe_details } = useParams();
   let [recipe_title, recipe_id] = recipe_details.split("+");
@@ -48,6 +55,8 @@ function RecipeDetails() {
     }
 
     setCheckedSteps(newChecked);
+
+    handleStepCompletion(value + 1);
   };
   const getRecipeDetails = async () => {
     let headersList = {
@@ -65,80 +74,118 @@ function RecipeDetails() {
     let data = await response.json();
     setRecipeDetails(data);
     console.log(data);
+    console.log("length is :", data.length);
+    setTotalSteps(data[0].steps.length);
   };
   useEffect(() => {
     getRecipeDetails();
   }, []);
 
-  return (
-    <MyDrawer>
-      <Container>
-        <MyHeading>{recipe_title}</MyHeading>
+  const handleStepCompletion = (stepNumber) => {
+    setCurrentStep(stepNumber);
+  };
 
-        <List>
-          {recipeDetails.length > 0 &&
-            recipeDetails[0].steps.map((step, index) => (
-              <MyCard
-                sx={{ margin: "15px", bgcolor: "lightblue " }}
-              >
-                <CardContent>
-                  <>
-                    <ListItem
-                      key={index}
-                      button
-                      onClick={handleToggleStep(index)}
+  return (
+    <Box sx={{ width: "100%" }}>
+      <MyDrawer>
+        <Container maxWidth="md">
+          <MyHeading>{recipe_title}</MyHeading>
+          <div>
+            {/* LinearProgress added here */}
+            <LinearProgress
+              variant="determinate"
+              value={(currentStep / totalSteps) * 100}
+            />
+          </div>
+          <List>
+            <Grid container>
+              {recipeDetails.length > 0 &&
+                recipeDetails[0].steps.map((step, index) => (
+                  <Grid
+                    sx={{ padding: "0" }}
+                    item
+                    xs={12}
+                    sm={12}
+                    md={12}
+                    lg={12}
+                  >
+                    <MyCard
+                      sx={{
+                        margin: "15px",
+                        bgcolor: "lightblue ",
+                        padding: "0",
+                      }}
                     >
-                      <Checkbox
-                        edge="start"
-                        checked={checkedSteps.indexOf(index) !== -1}
-                        tabIndex={-1}
-                        disableRipple
-                      />
-                      <ListItemText
-                        primary={`Step ${step.number}: ${step.step}`}
-                      />
-                    </ListItem>
-                    <ListItem>
-                      {step.ingredients.length > 0 && (
-                        <Typography variant="p">Ingredients:</Typography>
-                      )}
-                      {step.ingredients.map((ingredient) => (
-                        <Chip
-                          label={ingredient.name}
-                          variant={
-                            checkedIngredients.indexOf(ingredient.name) !== -1
-                              ? "default"
-                              : "outlined"
-                          }
-                          color="primary"
-                          size="small"
-                          style={{ margin: "2px" }}
-                          clickable
-                          onClick={handleToggleIngredient(ingredient.name)}
-                        />
-                      ))}
-                    </ListItem>
-                    <ListItem>
-                      {step.equipment.length > 0 && (
-                        <Typography variant="p">Equipment:</Typography>
-                      )}
-                      {step.equipment.map((equip) => (
-                        <Chip
-                          label={equip.name}
-                          variant="outlined"
-                          color="secondary"
-                          size="small"
-                          style={{ margin: "2px" }}
-                        />
-                      ))}
-                    </ListItem>
-                  </>
-                </CardContent>
-              </MyCard>
-            ))}
-        </List>
-      </Container>
-    </MyDrawer>
+                      <CardContent sx={{ padding: "0" }}>
+                        <>
+                          <ListItem
+                            key={index}
+                            button
+                            onClick={handleToggleStep(index)}
+                            // onClick={()=>{
+                            //   handleToggleStep(index);
+                            //   handleStepCompletion(index + 1);
+
+                            // }}
+                          >
+                            <Checkbox
+                              edge="start"
+                              checked={checkedSteps.indexOf(index) !== -1}
+                              tabIndex={-1}
+                              disableRipple
+                            />
+                            <ListItemText
+                              primary={`Step ${step.number}: ${step.step}`}
+                            />
+                          </ListItem>
+                          <ListItem>
+                            {step.ingredients.length > 0 && (
+                              <Typography variant="p">Ingredients:</Typography>
+                            )}
+                            {step.ingredients.map((ingredient) => (
+                              <Chip
+                                label={ingredient.name}
+                                variant={
+                                  checkedIngredients.indexOf(
+                                    ingredient.name
+                                  ) !== -1
+                                    ? "default"
+                                    : "outlined"
+                                }
+                                color="primary"
+                                size="small"
+                                style={{ margin: "2px" }}
+                                clickable
+                                onClick={handleToggleIngredient(
+                                  ingredient.name
+                                )}
+                              />
+                            ))}
+                          </ListItem>
+                          <ListItem>
+                            {step.equipment.length > 0 && (
+                              <Typography variant="p">Equipment:</Typography>
+                            )}
+                            {step.equipment.map((equip) => (
+                              <Chip
+                                label={equip.name}
+                                variant="outlined"
+                                color="secondary"
+                                size="small"
+                                style={{ margin: "2px" }}
+                              />
+                            ))}
+                          </ListItem>
+                        </>
+                      </CardContent>
+                    </MyCard>
+                  </Grid>
+                ))}
+            </Grid>
+          </List>
+        </Container>
+      </MyDrawer>
+    </Box>
   );
 }
 

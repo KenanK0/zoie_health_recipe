@@ -55,6 +55,7 @@ function Home() {
         console.log(recipes);
       })
       .catch((error) => {
+        setApiError(true);
         console.error(`Fetch Error =\n`, error);
         setLoading(false);
       });
@@ -107,7 +108,7 @@ function Home() {
             component="div"
             sx={{ color: "red", fontWeight: "bold" }}
           >
-            Oops! Something went wrong. Please try again later.
+            Oops! Something went wrong. <br/> Please check your internet connection or try again later.
           </Typography>
         )}
         {!loading ? (

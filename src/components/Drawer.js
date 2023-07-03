@@ -19,7 +19,11 @@ import {
   KitchenOutlined,
   CasinoOutlined,
   HomeOutlined,
+  Settings,
 } from "@mui/icons-material";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+
 import { Link, useNavigate } from "react-router-dom";
 const drawerWidth = 240;
 
@@ -54,30 +58,18 @@ export default function MyDrawer(props) {
         <ListItem
           disablePadding
           onClick={() => {
-            navigate("/FeelingLucky");
+            navigate("/Account");
           }}
         >
           <ListItemButton>
             <ListItemIcon>
-              <CasinoOutlined color="primary" />
+              <Settings color="primary" />
             </ListItemIcon>
-            <ListItemText primary="Feeling Lucky?" />
+            <ListItemText primary="Account" />
           </ListItemButton>
         </ListItem>
         <Divider />
-        <ListItem
-          disablePadding
-          onClick={() => {
-            navigate("/Fridge");
-          }}
-        >
-          <ListItemButton>
-            <ListItemIcon>
-              <KitchenOutlined color="primary" />
-            </ListItemIcon>
-            <ListItemText primary="What's in your fridge?" />
-          </ListItemButton>
-        </ListItem>
+
         <Divider />
       </List>
     </div>
