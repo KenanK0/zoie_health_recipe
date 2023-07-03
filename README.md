@@ -1,70 +1,53 @@
-# Getting Started with Create React App
+# Zoie Health Recipe Challenge
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Zoie Health Recipe Challenge is a dynamic and responsive web application built with React. It's designed to assist users in exploring various culinary delights. The application fetches its rich database of recipes from the Spoonacular API, which provides a free tier with a limited number of requests per day. Users can randomly generate a recipe, search for recipes using particular ingredients, and view detailed instructions and ingredient lists for any chosen recipe.
 
-## Available Scripts
+## Live Demo
 
-In the project directory, you can run:
+The application is hosted on Vercel and can be accessed via the following link: https://zoie-health-recipe.vercel.app/
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## API Usage
+This project uses the free tier of the Spoonacular API, which has a limit of a certain number of requests per day. Please note that excessive usage of the application might result in hitting this limit. If you're testing or extending this project, be mindful of the number of requests you're making.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Features
+The application includes the following features:
 
-### `npm test`
+* Recipe Search: Users can search for recipes based on the ingredients they have on hand.
+* Recipe Details: Users can access detailed information about a recipe, including cooking instructions and ingredient lists.
+* Interactive Ingredient Checklist: Users can check off ingredients as they go along to keep track of what they've used.
+* Cooking Progress Tracker: Users can also track their cooking progress by checking off completed steps.
+## Built With
+* React
+* Material UI
+* Spoonacular API
+## How to run the project locally
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone the project repository from GitHub by running the following command in your terminal:
+```
+git clone https://github.com/KenanK0/zoie_health_recipe.git
+```
 
-### `npm run build`
+2. Navigate to the project directory:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+cd zoie_health_recipe
+```
+3. Install the project dependencies:
+```
+yarn install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. Start the project:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+npm start
+```
+The application will start running on http://localhost:3000
 
-### `npm run eject`
+## Project Structure
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The application is modularized into various components for scalability and ease of maintenance. These components include drawers, headings, and cards, each responsible for rendering a specific part of the user interface.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The application is fully responsive and provides an optimal user experience across various screen sizes.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
